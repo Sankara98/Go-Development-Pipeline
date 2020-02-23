@@ -61,7 +61,7 @@ deploy:
     - internal/docker-scratch-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
-        cmd: /pipeline/source/main
+        cmd: go run main.go
         port: "8080"
         tag: latest
         repository: sankara98/go-development-pipeline
