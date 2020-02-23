@@ -49,8 +49,11 @@ build:
     - script:
         name: go build
         code: |
-          go build ./...
-
+          go build -o myapp
+    - script:
+        name: Copy Binary
+        code: |
+          cp myapp "$WERCKER_OUTPUT_DIR"
     # Test the project
     #- script:
     #name: go test
@@ -61,8 +64,7 @@ deploy:
     - internal/docker-scratch-push:
         username: $DOCKER_USERNAME
         password: $DOCKER_PASSWORD
-        cmd: go run main.go
-        port: "8080"
+        cmd: ./myapp
         tag: latest
         repository: sankara98/go-development-pipeline
         registry: https://registry.hub.docker.com
